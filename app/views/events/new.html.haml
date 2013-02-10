@@ -1,0 +1,12 @@
+events#new
+= form_for @event do |f|
+  = f.hidden_field :user_id
+  where
+  = f.text_field :where
+  who
+  = f.text_field :who
+  what
+  = f.text_field :what
+  description
+  = f.text_area :description
+  = f.submit

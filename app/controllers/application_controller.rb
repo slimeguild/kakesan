@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
   before_filter :set_user_session_expire_after
 
+  def login_authenticate
+    redirect_to root_path unless signed_in?
+  end
+
   private
   def current_user
     current_user ||= User.find(session[:user_id]) if session[:user_id]
