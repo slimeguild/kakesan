@@ -17,9 +17,10 @@ class AuthentificationsController < ApplicationController
       self.current_user = user
     end
     request.session_options[:expire_after] = 1.months.from_now
-    redirect_to root_path, notice: 'ログインしました。'
+    redirect_to login_ksapi
   end
 
   def failure
+    redirect_to root_path
   end
 end

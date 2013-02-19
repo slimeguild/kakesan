@@ -1,12 +1,36 @@
-events#new
-= form_for @event do |f|
-  = f.hidden_field :user_id
-  where
-  = f.text_field :where
-  who
-  = f.text_field :who
-  what
-  = f.text_field :what
-  description
-  = f.text_area :description
-  = f.submit
+- content_for :foot do
+  :coffeescript
+    $ ->
+      kakesan.loadAPI('#{button_ksapi('kakesan.closeButtonDidPushed', '閉じる', 'right')}')
+#wrapper
+  - if notice
+    .notice
+      %span= notice
+
+  - if @event.errors.any?
+    %ul.error
+      - @event.errors.full_messages.each do |message|
+        %li= message
+  = form_for @event do |f|
+    = f.hidden_field :user_id
+    .column
+      .label
+        %span= f.label :where
+        %span.caution ※必須。9文字以内。
+      .field= f.text_field :where, maxlength: Event::KAKESAN_MAX_LENGTH
+    .column
+      .label
+        %span= f.label :who
+        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
+      .fileld= f.text_field :who, maxlength: Event::KAKESAN_MAX_LENGTH
+    .column
+      .label
+        %span= f.label :what
+        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
+      .fileld= f.text_field :what, maxlength: Event::KAKESAN_MAX_LENGTH
+    .column
+      .label
+        %span= f.label :description
+      .field= f.text_area :description, maxlength: Event::DESCRIPTION_MAX_LENGTH
+    .submit
+      = f.submit 'イベントを作る', class: 'button'

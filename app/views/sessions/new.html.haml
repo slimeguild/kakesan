@@ -1,1 +1,33 @@
-= link_to 'ログイン','/auth/twitter'
+- content_for :foot do
+  :coffeescript
+    $ ->
+      winHeight = $(window).innerHeight()
+      wpHeight = $('#wrapper').innerHeight() 
+      marginTop = (winHeight - wpHeight) / 2
+      $('#wrapper').css("margin-top":marginTop)
+  :css
+    body {background: #FF9933}
+#login-page
+  #wrapper
+    #logo
+      %span ×3
+    .event
+      .kakesan.clearfix
+        .box.reverse
+          %span どこの
+        .kake.reverse
+          %span ×
+        .box.reverse
+          %span 誰と
+        .kake.reverse
+          %span ×
+        .box.reverse
+          %span 何を
+          %br
+          %span する？
+    #description
+      %p お気軽イベントコミュニティ
+      %p 『 ×3 (カケサン) 』     
+    #button
+      = link_to '/auth/twitter' do
+        .button.twitter Twiiterでログイン

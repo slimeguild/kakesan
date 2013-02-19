@@ -1,0 +1,15 @@
+- name: さくらぎ
+  nickname: sakuragi
+  image: '/assets/dummy/sakuragi.png' 
+- name: るかわ
+  nickname: rukawa
+  image: '/assets/dummy/rukawa.png'
+- name: みやぎ
+  nickname: miyagi
+  image: '/assets/dummy/miyagi.png'
+- name: みつい
+  nickname: mitsui
+  image: '/assets/dummy/mitsui.png'
+- name: ごり
+  nickname: gori
+  image: '/assets/dummy/gori.png'

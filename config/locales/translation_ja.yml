@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      event: event  #g
+      twitter: twitter  #g
+      user: user  #g
+
+    attributes:
+      event:
+        description: イベント詳細
+        user: :activerecord.models.user  #g
+        what: 何をする？
+        where: どこの
+        who: 誰と
+
+      twitter:
+        user: :activerecord.models.user  #g
+
+      user:
+        events: events  #g
+        image: image  #g
+        name: name  #g
+        nickname: nickname  #g
+        twitter: :activerecord.models.twitter  #g

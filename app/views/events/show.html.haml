@@ -1,0 +1,69 @@
+- content_for :foot do
+  :coffeescript
+    $ ->
+      $("#comment_body").bind "keydown keyup keypress change", ->
+        if $(this).val().length > 0
+          $('#comment_button').removeAttr("disabled");
+        else
+          $('#comment_button').attr("disabled","disabled")
+#event-page
+  #wrapper
+    .event
+      .kakesan.clearfix
+        .box
+          = @event.where
+        .kake
+          %span ×
+        .box
+          %span= @event.who
+        .kake
+          %span ×
+        .box
+          %span= @event.what
+      .info.clearfix
+        .photo.left{style: "background: url(#{@event.user.image}) no-repeat center; background-size: cover;"}
+        .name.left
+          %span= @event.user.nickname
+        .time.right
+          %span= twitter_like_time(@event.created_at)
+    #entry-button
+      - if @entry.blank?
+        .button.disabled あなたが主催者です
+      - elsif @entry.new_record?
+        = form_for @entry do |f|
+          = f.hidden_field :user_id
+          = f.hidden_field :event_id
+          = f.submit '参加する', class: 'button'
+      - else
+        .button.disabled 参加しています
+    .column
+      .label イベント詳細
+      #description
+        = simple_format @event.description
+    .column
+      .label 参加者
+      #participants.clearfix
+        = image_tag @event.user.image
+        - @event.users.each do |user|
+          = image_tag user.image     
+    .column
+      .label コメント
+      - if @comment
+        = form_for @comment do |f|
+          = f.hidden_field :user_id
+          = f.hidden_field :event_id
+          .clearfix
+            .body.left= f.text_area :body,  maxlength: Comment::MAX_LENGTH
+            .left= f.submit '送信', id: 'comment_button', class: 'button mini', disabled: true
+    - @event.comments.each do |comment|
+      .comment
+        .info.clearfix
+          .photo.left{style: "background: url(#{comment.user.image}) no-repeat center; background-size: cover;"}
+          .name.left
+            %span= comment.user.nickname
+          .time.right
+            %span= twitter_like_time(comment.created_at)
+        .body
+          = simple_format comment.body
+
+

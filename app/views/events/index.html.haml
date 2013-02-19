@@ -1,4 +1,7 @@
-events#index
-
-= @events.each do |event|
-  = event.id
+- content_for :foot do
+  :coffeescript
+    $ ->
+      kakesan.ajax_loader(#{@next}, '#{request.path}', {})
+%ul#event-list
+  #contents
+    = render 'events/list'
