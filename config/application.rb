@@ -1,6 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
-require 'kaminari' 
 require 'rails/all'
 
 if defined?(Bundler)
