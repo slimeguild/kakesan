@@ -47,4 +47,4 @@ kakesan.loadAPI = (api) ->
 # Native Callback
 ##########################################
 kakesan.closeButtonDidPushed = ->
-  location.href = "ksapi://close({})"
+  location.href = "ksapi://close/"
