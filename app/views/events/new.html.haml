@@ -16,7 +16,7 @@
     .column
       .label
         %span= f.label :where
-        %span.caution ※必須。9文字以内。
+        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
       .field= f.text_field :where, maxlength: Event::KAKESAN_MAX_LENGTH
     .column
       .label
