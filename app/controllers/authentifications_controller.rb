@@ -3,12 +3,21 @@ class AuthentificationsController < ApplicationController
   def callback
     auth = env['omniauth.auth']
     if authorization = Twitter.find_by_account_id(auth['uid'])
-      self.current_user = authorization.user
+      user = authorization.user
+      user.update_attributes({
+        name: auth['info']['name'],
+        nickname: auth['info']['nickname'],
+        image: auth['info']['image'],
+        description: auth['info']['description']
+
+      })
+      self.current_user = user
     else
       user = User.new({
         name: auth['info']['name'],
         nickname: auth['info']['nickname'],
-        image: auth['info']['image']
+        image: auth['info']['image'],
+        description: auth['info']['description']
       })
       user.build_twitter(
         account_id: auth['uid']

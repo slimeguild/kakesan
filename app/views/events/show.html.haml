@@ -26,29 +26,11 @@
           %span= @event.user.nickname
         .time.right
           %span= twitter_like_time(@event.created_at)
-    #entry-button
-      - if @entry.blank?
-        .button.disabled あなたが主催者です
-      - elsif @entry.new_record?
-        = form_for @entry do |f|
-          = f.hidden_field :user_id
-          = f.hidden_field :event_id
-          = f.submit '参加する', class: 'button'
-      - else
-        .button.disabled 参加しています
+      .description.bottom
+        = simple_format @event.description  
     .column
-      .label イベント詳細
-      #description
-        = simple_format @event.description
-    .column
-      .label 参加者
-      #participants.clearfix
-        = image_tag @event.user.image
-        - @event.users.each do |user|
-          = image_tag user.image     
-    .column
-      .label コメント
-      - if @comment
+      .label チャット
+      .field
         = form_for @comment do |f|
           = f.hidden_field :user_id
           = f.hidden_field :event_id
@@ -58,9 +40,10 @@
     - @event.comments.each do |comment|
       .comment
         .info.clearfix
-          .photo.left{style: "background: url(#{comment.user.image}) no-repeat center; background-size: cover;"}
-          .name.left
-            %span= comment.user.nickname
+          = link_to load_ksapi(user_path(comment.user), comment.user.name) do
+            .photo.left{style: "background: url(#{comment.user.image}) no-repeat center; background-size: cover;"}
+            .name.left
+              %span= comment.user.nickname
           .time.right
             %span= twitter_like_time(comment.created_at)
         .body

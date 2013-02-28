@@ -7,11 +7,12 @@ ja:
 
     attributes:
       event:
-        description: イベント詳細
+        title: ルーム名
+        description: ルーム詳細
         user: :activerecord.models.user  #g
-        what: 何をする？
-        where: どこの
-        who: 誰と
+        what: 参加条件
+        where: 参加条件
+        who: 参加条件
 
       twitter:
         user: :activerecord.models.user  #g

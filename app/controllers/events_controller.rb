@@ -14,12 +14,12 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    unless current_user == @event.user
-      @entry = Entry.find_by_user_id_and_event_id(current_user.id, @event.id) || Entry.new({event_id: @event.id, user_id: current_user.id})
-    end
-    if (current_user == @event.user) || @entry.persisted?
-      @comment = Comment.new({event_id: @event.id, user_id: current_user.id})
-    end
+    # unless current_user == @event.user
+    #   @entry = Entry.find_by_user_id_and_event_id(current_user.id, @event.id) || Entry.new({event_id: @event.id, user_id: current_user.id})
+    # end
+    # if (current_user == @event.user) || @entry.persisted?
+    @comment = Comment.new({event_id: @event.id, user_id: current_user.id})
+    #end
   end
 
   def new

@@ -1,0 +1,8 @@
+#user-page
+  #wrapper
+    .clearfix
+      .photo.left{style: "background: url(#{@user.image}) no-repeat center; background-size: cover;"}
+      .name.left
+        =@user.nickname
+    .description
+      = simple_format @user.description

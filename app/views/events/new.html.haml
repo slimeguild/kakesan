@@ -9,25 +9,26 @@
 
   - if @event.errors.any?
     %ul.error
-      - @event.errors.full_messages.each do |message|
+      - @event.errors.full_messages.uniq.each do |message|
         %li= message
   = form_for @event do |f|
     = f.hidden_field :user_id
     .column
       .label
+        %span= f.label :title
+        %span.caution= "※必須。 #{Event::TITLE_MAX_LENGTH}文字以内"
+      .field.clearfix
+        .left= f.text_field :title, maxlength: Event::TITLE_MAX_LENGTH, class: 'title'
+        .left.title-tail 
+          %span が好き
+
+    .column
+      .label
         %span= f.label :where
-        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
+        %span.caution= "※必須。 #{Event::KAKESAN_MAX_LENGTH}文字以内"
       .field= f.text_field :where, maxlength: Event::KAKESAN_MAX_LENGTH
-    .column
-      .label
-        %span= f.label :who
-        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
-      .fileld= f.text_field :who, maxlength: Event::KAKESAN_MAX_LENGTH
-    .column
-      .label
-        %span= f.label :what
-        %span.caution= "※必須。#{Event::KAKESAN_MAX_LENGTH}文字以内。"
-      .fileld= f.text_field :what, maxlength: Event::KAKESAN_MAX_LENGTH
+      .field= f.text_field :who, maxlength: Event::KAKESAN_MAX_LENGTH
+      .field= f.text_field :what, maxlength: Event::KAKESAN_MAX_LENGTH
     .column
       .label
         %span= f.label :description
