@@ -12,7 +12,6 @@ class Event < ActiveRecord::Base
   has_many   :users, through: :entries
   has_many   :comments, order: 'created_at desc', dependent: :destroy
   scope :newly, order('created_at desc')
-  scope :entried_by, lambda{|user| joins(:entries).where('entries.user_id = ?', user.id).order('entries.created_at desc')}
   validates :title, presence: true, length: {maximum: TITLE_MAX_LENGTH}
   validates :where, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
   validates :who, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}

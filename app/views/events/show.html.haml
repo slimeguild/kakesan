@@ -28,15 +28,15 @@
           %span= twitter_like_time(@event.created_at)
       .description.bottom
         = simple_format @event.description  
+  #line
+  #wrapper
     .column
-      .label チャット
-      .field
-        = form_for @comment do |f|
-          = f.hidden_field :user_id
-          = f.hidden_field :event_id
-          .clearfix
-            .body.left= f.text_area :body,  maxlength: Comment::MAX_LENGTH
-            .left= f.submit '送信', id: 'comment_button', class: 'button mini', disabled: true
+      = form_for @comment do |f|
+        = f.hidden_field :user_id
+        = f.hidden_field :event_id
+        .clearfix
+          .body.left= f.text_area :body,  maxlength: Comment::MAX_LENGTH
+          .left= f.submit '送信', id: 'comment_button', class: 'button mini', disabled: true
     - @event.comments.each do |comment|
       .comment
         .info.clearfix

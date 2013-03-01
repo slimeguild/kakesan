@@ -7,13 +7,13 @@ module Private
       page = params[:page] ? params[:page].to_i : 1
 
       if @search == 'hosted'
-        events = current_user.events
+        events = current_user.events.newly.to_a
       else
-        events = Event.entried_by(current_user)
+        events = current_user.entried_events
       end
-      @events = events.page(page).per(Event::PER_PAGE)
+      @events = Kaminari.paginate_array(events).page(page).per(Event::PER_PAGE)
       if page == 1
-        @next = events.newly.page(page+1).per(Event::PER_PAGE).count > 0
+        @next = Kaminari.paginate_array(events).page(page + 1).per(Event::PER_PAGE).count > 0
       else
         render 'events/_list', layout: false, locals: { events: @events}
       end

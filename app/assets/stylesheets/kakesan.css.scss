@@ -172,8 +172,8 @@ ul.error {
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  color: #FFF;
-  background: #BBB;
+  color: #666;
+  background: #FFDAB9;
 }
 
 .event {
@@ -264,6 +264,9 @@ li.event {
   }
   #button {
     margin-bottom: 20px;
+  }
+  #line {
+    border-bottom: 1px solid #DDD;
   }
 
   #participants {
