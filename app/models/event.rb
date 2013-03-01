@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
 
   def participants
     participants = [self.user]
-    participants += User.find(self.comments.map(&:user_id))
-    participants.uniq!
+    participants += User.find(self.comments.map(&:user_id).uniq)
+    participants.uniq
   end
 end
