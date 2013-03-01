@@ -34,7 +34,8 @@
           %span 参加者
         #participants.clearfix
           - @event.participants.each do |participant|
-            = image_tag participant.image
+            = link_to load_ksapi(user_path(participant), participant.nickname) do
+              = image_tag participant.image
     .column
       .label.mini
         %span チャット
