@@ -1,0 +1,40 @@
+= render 'layouts/flash', object: @user
+= form_for @user do |f|
+  = f.fields_for :twitter do |t|
+    = t.hidden_field :account_id
+  .column
+    .label
+      %span= f.label :image
+    .field
+      = image_tag f.object.twitter_image
+      = f.hidden_field :twitter_image
+  .column
+    .label
+      %span= f.label :nickname
+      %span.caution= "※必須。 #{User::STRING_MAX_LENGTH}文字以内。"
+    .field=f.text_field :nickname, maxlength: User::STRING_MAX_LENGTH
+  .column
+    .label
+      %span= f.label :gender_id
+    .field.clearfix
+      - Gender.all.each do |gender|
+        .radio
+          = f.radio_button :gender_id, gender.id
+          %span= gender.name
+  .column
+    .label
+      %span= f.label :age_id
+    .field= f.select :age_id, Age.all.map{|a| [a.name, a.id]}
+  .column
+    .label
+      %span= f.label :area
+      %span.caution= "※#{User::STRING_MAX_LENGTH}文字以内。"
+    .field= f.text_field :area
+
+  .column
+    .label
+      %span= f.label :description
+      %span.caution= "※必須。 #{User::TEXT_MAX_LENGTH}文字以内。"
+    .field=f.text_area :description, maxlength: User::TEXT_MAX_LENGTH
+  .submit
+    = f.submit f.object.new_record? ? '登録' : '変更', class: 'button'

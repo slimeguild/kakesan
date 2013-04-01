@@ -3,14 +3,7 @@
     $ ->
       kakesan.loadAPI('#{button_ksapi('kakesan.closeButtonDidPushed', '閉じる', 'right')}')
 #wrapper
-  - if notice
-    .notice
-      %span= notice
-
-  - if @event.errors.any?
-    %ul.error
-      - @event.errors.full_messages.uniq.each do |message|
-        %li= message
+  = render 'layouts/flash', object: @event
   = form_for @event do |f|
     = f.hidden_field :user_id
     .column

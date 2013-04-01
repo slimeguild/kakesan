@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless signed_in?
   end
 
+  def princial_authenticate
+    user_id = params[:user_id] || params[:id]
+    render 'layouts/error' unless current_user.id == user_id.to_i    
+  end
+
   private
   def current_user
     current_user ||= User.find(session[:user_id]) if session[:user_id]

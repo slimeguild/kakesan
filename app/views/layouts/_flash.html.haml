@@ -1,0 +1,8 @@
+- if notice
+  .notice
+    %span= notice
+
+- if object.errors.any?
+  %ul.error
+    - object.errors.full_messages.uniq.each do |message|
+      %li= message

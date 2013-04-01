@@ -13,13 +13,10 @@ ja:
         what: 参加条件
         where: 参加条件
         who: 参加条件
-
-      twitter:
-        user: :activerecord.models.user  #g
-
       user:
-        events: events  #g
-        image: image  #g
-        name: name  #g
-        nickname: nickname  #g
-        twitter: :activerecord.models.twitter  #g
+        image: プロフィール画像
+        nickname: ニックネーム
+        description: 自己紹介
+        age_id: 年代
+        gender_id: 性別
+        area: 活動エリア
