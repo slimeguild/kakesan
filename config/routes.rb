@@ -6,7 +6,7 @@ Kakesan::Application.routes.draw do
   resources :events, only: [:new, :create, :index, :show]
   resources :entries, only: [:create]
   resources :comments, only: [:create]
-  resources :users, only: [:show]
+  resources :users, only: [:new, :create, :show, :edit, :update]
   namespace :private do
     resources :events, only: [:index]
   end
