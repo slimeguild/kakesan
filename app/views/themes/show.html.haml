@@ -6,34 +6,34 @@
           $('#comment_button').removeAttr("disabled");
         else
           $('#comment_button').attr("disabled","disabled")
-#event-page
+#theme-page
   #wrapper
-    .event
+    .theme
       .kakesan.clearfix
         .box
-          = @event.where
+          = @theme.where
         .kake
           %span ×
         .box
-          %span= @event.who
+          %span= @theme.who
         .kake
           %span ×
         .box
-          %span= @event.what
+          %span= @theme.what
       .info.clearfix
-        .photo.left{style: "background: url(#{@event.user.image}) no-repeat center; background-size: cover;"}
-        = link_to load_ksapi(user_path(@event.user), @event.user.nickname) do
+        .photo.left{style: "background: url(#{@theme.user.image}) no-repeat center; background-size: cover;"}
+        = link_to load_ksapi(user_path(@theme.user), @theme.user.nickname) do
           .name.left
-            %span= @event.user.nickname
+            %span= @theme.user.nickname
           .time.right
-            %span= twitter_like_time(@event.created_at)
+            %span= twitter_like_time(@theme.created_at)
       .description.bottom
-        = simple_format @event.description
+        = simple_format @theme.description
       .column
         .label.mini
           %span 参加者
         #participants.clearfix
-          - @event.participants.each do |participant|
+          - @theme.participants.each do |participant|
             = link_to load_ksapi(user_path(participant), participant.nickname) do
               = image_tag participant.image
     .column
@@ -41,11 +41,11 @@
         %span チャット
       = form_for @comment do |f|
         = f.hidden_field :user_id
-        = f.hidden_field :event_id
+        = f.hidden_field :theme_id
         .clearfix
           .body.left= f.text_area :body,  maxlength: Comment::MAX_LENGTH
           .left= f.submit '送信', id: 'comment_button', class: 'button mini', disabled: true
-    - @event.comments.each do |comment|
+    - @theme.comments.each do |comment|
       .comment
         .info.clearfix
           = link_to load_ksapi(user_path(comment.user), comment.user.nickname) do

@@ -7,7 +7,7 @@ window.kakesan = kakesan
 kakesan.ajax_loader = (next, path, options) ->
   show_loader = ->
     loader = $("<div id='loader' style='text-align: center; padding: 5px;'><img src= '/assets/ajax-loader.gif' /></div>")
-    $("#event-list").append(loader)
+    $("#theme-list").append(loader)
   
   hide_loader = ->
     $('#loader').remove()

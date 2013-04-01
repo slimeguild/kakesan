@@ -1,12 +1,12 @@
 ja:
   activerecord:
     models:
-      event: event  #g
+      theme: theme  #g
       twitter: twitter  #g
       user: user  #g
 
     attributes:
-      event:
+      theme:
         title: ルーム名
         description: ルーム詳細
         user: :activerecord.models.user  #g

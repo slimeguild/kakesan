@@ -4,6 +4,6 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.save
-    redirect_to event_path(@comment.event)
+    redirect_to theme_path(@comment.theme)
   end
 end

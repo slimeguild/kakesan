@@ -4,6 +4,6 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(params[:entry])
     @entry.save
-    redirect_to event_path(@entry.event)
+    redirect_to theme_path(@entry.theme)
   end
 end

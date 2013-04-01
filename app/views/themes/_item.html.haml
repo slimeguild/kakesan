@@ -1,0 +1,24 @@
+%li.theme
+  = link_to load_ksapi(theme_path(theme), theme.custom_title) do
+    .title
+      %span= theme.custom_title
+    .kakesan.clearfix
+      .box
+        = theme.where
+      .kake
+        %span ×
+      .box
+        %span= theme.who
+      .kake
+        %span ×
+      .box
+        %span= theme.what
+    .description.no-wrap
+      %span= theme.description
+  .info.clearfix
+    = link_to load_ksapi(user_path(theme.user), theme.user.nickname) do
+      .photo.left{style: "background: url(#{theme.user.image}) no-repeat center; background-size: cover;"}
+      .name.left
+        %span= theme.user.nickname
+    .time.right
+      %span= twitter_like_time(theme.created_at)
