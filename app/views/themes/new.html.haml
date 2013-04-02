@@ -17,14 +17,14 @@
 
     .column
       .label
-        %span= f.label :where
-        %span.caution= "※必須。 #{Theme::KAKESAN_MAX_LENGTH}文字以内"
-      .field= f.text_field :where, maxlength: Theme::KAKESAN_MAX_LENGTH
-      .field= f.text_field :who, maxlength: Theme::KAKESAN_MAX_LENGTH
-      .field= f.text_field :what, maxlength: Theme::KAKESAN_MAX_LENGTH
+        %span= Requirement.model_name.human
+        %span.caution= "※必須。 #{Requirement::TITLE_MAX_LENGTH}文字以内"
+      = f.fields_for :requirements do |r|
+        .field
+          = r.text_field :title
     .column
       .label
         %span= f.label :description
       .field= f.text_area :description, maxlength: Theme::DESCRIPTION_MAX_LENGTH
     .submit
-      = f.submit 'イベントを作る', class: 'button'
+      = f.submit 'テーマを作る', class: 'button'

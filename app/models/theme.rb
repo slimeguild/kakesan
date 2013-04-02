@@ -1,21 +1,24 @@
 # coding: utf-8
 class Theme < ActiveRecord::Base
   TITLE_MAX_LENGTH = 9
-  KAKESAN_MAX_LENGTH = 12
   DESCRIPTION_MAX_LENGTH = 256
   PER_PAGE = 10
   
-  attr_accessible :user_id, :title, :where, :who, :what, :description
+  attr_accessible :user_id, :title, :description, :requirements_attributes
   
   belongs_to :user
-  has_many   :entries, dependent: :destroy
-  has_many   :users, through: :entries
-  has_many   :comments, order: 'created_at desc', dependent: :destroy
+  # has_many   :entries, dependent: :destroy
+  # has_many   :users, through: :entries
+  # has_many   :comments, order: 'created_at desc', dependent: :destroy
+  has_many   :requirements, dependent: :destroy
+  
+  accepts_nested_attributes_for :requirements
+
   scope :newly, order('created_at desc')
   validates :title, presence: true, length: {maximum: TITLE_MAX_LENGTH}
-  validates :where, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
-  validates :who, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
-  validates :what, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
+  #validates :where, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
+  #validates :who, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
+  #validates :what, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
   validates :description, length: {maximum: DESCRIPTION_MAX_LENGTH}
 
   def custom_title
@@ -27,4 +30,9 @@ class Theme < ActiveRecord::Base
     participants += User.find(self.comments.map(&:user_id).uniq)
     participants.uniq
   end
+
+  def build_requirements
+    (Requirement::MAX_NUM - self.requirements.count).times{self.requirements.build}
+  end
+
 end

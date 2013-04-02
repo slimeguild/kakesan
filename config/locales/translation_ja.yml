@@ -1,18 +1,13 @@
 ja:
   activerecord:
     models:
-      theme: theme  #g
-      twitter: twitter  #g
-      user: user  #g
-
+      requirement: 参加条件
     attributes:
       theme:
-        title: ルーム名
-        description: ルーム詳細
-        user: :activerecord.models.user  #g
-        what: 参加条件
-        where: 参加条件
-        who: 参加条件
+        title: テーマ名
+        description: テーマ詳細
+      requirements:
+        title: 参加条件
       user:
         image: プロフィール画像
         nickname: ニックネーム

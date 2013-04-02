@@ -10,18 +10,15 @@
   #wrapper
     .theme
       .kakesan.clearfix
-        .box
-          = @theme.where
-        .kake
-          %span ×
-        .box
-          %span= @theme.who
-        .kake
-          %span ×
-        .box
-          %span= @theme.what
+        - requirements = @theme.requirements
+        - requirements.each_with_index do |r,i|
+          .box
+            %span= r.title
+          - unless (i+1) == requirements.count
+            .kake
+              %span ×
       .info.clearfix
-        .photo.left{style: "background: url(#{@theme.user.image}) no-repeat center; background-size: cover;"}
+        .photo.left{style: "background: url(#{@theme.user.twitter_image}) no-repeat center; background-size: cover;"}
         = link_to load_ksapi(user_path(@theme.user), @theme.user.nickname) do
           .name.left
             %span= @theme.user.nickname
@@ -33,9 +30,9 @@
         .label.mini
           %span 参加者
         #participants.clearfix
-          - @theme.participants.each do |participant|
-            = link_to load_ksapi(user_path(participant), participant.nickname) do
-              = image_tag participant.image
+          / - @theme.participants.each do |participant|
+          /   = link_to load_ksapi(user_path(participant), participant.nickname) do
+          /     = image_tag participant.image
     .column
       .label.mini
         %span チャット
@@ -45,16 +42,16 @@
         .clearfix
           .body.left= f.text_area :body,  maxlength: Comment::MAX_LENGTH
           .left= f.submit '送信', id: 'comment_button', class: 'button mini', disabled: true
-    - @theme.comments.each do |comment|
-      .comment
-        .info.clearfix
-          = link_to load_ksapi(user_path(comment.user), comment.user.nickname) do
-            .photo.left{style: "background: url(#{comment.user.image}) no-repeat center; background-size: cover;"}
-            .name.left
-              %span= comment.user.nickname
-          .time.right
-            %span= twitter_like_time(comment.created_at)
-        .body
-          = simple_format comment.body
+    / - @theme.comments.each do |comment|
+    /   .comment
+    /     .info.clearfix
+    /       = link_to load_ksapi(user_path(comment.user), comment.user.nickname) do
+    /         .photo.left{style: "background: url(#{comment.user.image}) no-repeat center; background-size: cover;"}
+    /         .name.left
+    /           %span= comment.user.nickname
+    /       .time.right
+    /         %span= twitter_like_time(comment.created_at)
+    /     .body
+    /       = simple_format comment.body
 
 

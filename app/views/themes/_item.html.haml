@@ -3,21 +3,18 @@
     .title
       %span= theme.custom_title
     .kakesan.clearfix
-      .box
-        = theme.where
-      .kake
-        %span ×
-      .box
-        %span= theme.who
-      .kake
-        %span ×
-      .box
-        %span= theme.what
+      - requirements = theme.requirements
+      - requirements.each_with_index do |r,i|
+        .box
+          %span= r.title
+        - unless (i+1) == requirements.count
+          .kake
+            %span ×
     .description.no-wrap
       %span= theme.description
   .info.clearfix
     = link_to load_ksapi(user_path(theme.user), theme.user.nickname) do
-      .photo.left{style: "background: url(#{theme.user.image}) no-repeat center; background-size: cover;"}
+      .photo.left{style: "background: url(#{theme.user.twitter_image}) no-repeat center; background-size: cover;"}
       .name.left
         %span= theme.user.nickname
     .time.right

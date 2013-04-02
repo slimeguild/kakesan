@@ -24,12 +24,13 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new({user_id: current_user.id})
+    @theme.build_requirements
   end
 
   def create
     @theme = Theme.new(params[:theme])
     if @theme.save
-      redirect_to new_theme_path, notice: 'イベントを作成しました。'
+      redirect_to new_theme_path, notice: 'テーマを作成しました。'
     else
       render :new
     end
