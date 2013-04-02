@@ -8,6 +8,10 @@ ja:
         description: テーマ詳細
       requirements:
         title: 参加条件
+      chats:
+        message: メッセージ
+      chat:
+        message: メッセージ
       user:
         image: プロフィール画像
         nickname: ニックネーム

@@ -14,12 +14,14 @@ class ThemesController < ApplicationController
 
   def show
     @theme = Theme.find(params[:id])
-    # unless current_user == @theme.user
-    #   @entry = Entry.find_by_user_id_and_theme_id(current_user.id, @theme.id) || Entry.new({theme_id: @theme.id, user_id: current_user.id})
-    # end
-    # if (current_user == @theme.user) || @entry.persisted?
-    @comment = Comment.new({theme_id: @theme.id, user_id: current_user.id})
-    #end
+    unless @theme.user == current_user
+      if talk = Talk.find_by_theme_id_and_user_id(@theme.id, current_user.id)
+        redirect_to talk_path(talk)
+      else
+        @talk = Talk.new({theme_id: @theme.id, user_id: current_user.id})
+        @talk.chats.build({user_id: current_user.id})
+      end
+    end
   end
 
   def new

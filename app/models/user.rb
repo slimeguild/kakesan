@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   validates :area, length: {maximum: STRING_MAX_LENGTH}
   validates :nickname, presence: true, length: {maximum: STRING_MAX_LENGTH}
+  validates :description, length: {maximum: TEXT_MAX_LENGTH}
+
   def entried_themes
     commented_themes = Theme.find(self.comments.map(&:theme_id)).to_a
     logger.info commented_themes

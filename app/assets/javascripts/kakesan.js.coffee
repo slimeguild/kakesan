@@ -36,6 +36,13 @@ kakesan.ajax_loader = (next, path, options) ->
       )
   )
 
+kakesan.chat_button = ->
+  $("#chat_message").bind "keydown keyup keypress change", ->
+      if $(this).val().length > 0
+        $('#chat_button').removeAttr("disabled");
+      else
+        $('#chat_button').attr("disabled","disabled")
+
 
 ##########################################
 # Native Request

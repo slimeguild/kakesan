@@ -281,10 +281,7 @@ li.theme {
   color: #333;
 }
 
-#theme-page {
-  #entry-button {
-    margin: 20px 0;
-  }
+.talk-page {
   #description {
     width: 100%;
     font-size: 13px;
@@ -306,7 +303,8 @@ li.theme {
       float: left;
     }
   }
-  #new_comment {
+  #new_talk, #new_chat {
+    margin-bottom: 15px;
     .body {
       width: 220px;
       margin-right: 10px;
@@ -319,7 +317,7 @@ li.theme {
       width: 60px;
     }
   }
-  .comment {
+  .chat {
     border-top: 1px dotted #DDD;
     padding: 10px;
     .info {
@@ -339,7 +337,7 @@ li.theme {
         font-weight: bold;
       }
     }
-    .body {
+    .message {
       margin-top: 10px;
       font-size: 13px;
     }

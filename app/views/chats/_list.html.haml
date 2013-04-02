@@ -1,0 +1,11 @@
+- @talk.chats.each do |chat|
+  .chat
+    .info.clearfix
+      = link_to load_ksapi(user_path(chat.user), chat.user.nickname) do
+        .photo.left{style: "background: url(#{chat.user.twitter_image}) no-repeat center; background-size: cover;"}
+        .name.left
+          %span= chat.user.nickname
+      .time.right
+        %span= twitter_like_time(chat.created_at)
+    .message
+      = simple_format chat.message

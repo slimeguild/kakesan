@@ -7,11 +7,9 @@ class Theme < ActiveRecord::Base
   attr_accessible :user_id, :title, :description, :requirements_attributes
   
   belongs_to :user
-  # has_many   :entries, dependent: :destroy
-  # has_many   :users, through: :entries
-  # has_many   :comments, order: 'created_at desc', dependent: :destroy
-  has_many   :requirements, dependent: :destroy
-  
+  has_many :requirements, dependent: :destroy
+  has_many :talks, dependent: :destroy
+
   accepts_nested_attributes_for :requirements
 
   scope :newly, order('created_at desc')

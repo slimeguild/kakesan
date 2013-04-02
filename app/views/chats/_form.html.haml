@@ -1,0 +1,10 @@
+= form_for @chat do |f|
+  = render 'layouts/flash', object: @chat
+  = f.hidden_field :talk_id
+  = f.hidden_field :user_id
+  .column
+    .label.mini チャット
+    .field.clearfix
+      .body.left
+        = f.text_area :message,  maxlength: Chat::MESSAGE_MAX_LENGTH, id: 'chat_message'
+      .left= f.submit '送信', id: 'chat_button', class: 'button mini', disabled: true

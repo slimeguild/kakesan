@@ -1,7 +1,6 @@
-# TODO Theme -> Talk
 # coding: utf-8
 module Private
-  class TalksController < ApplicationController  
+  class ThemesController < ApplicationController  
     before_filter :login_authenticate  
     def index
       @search = params[:search] || 'hosted'
