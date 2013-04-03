@@ -27,21 +27,6 @@ ActiveRecord::Schema.define(:version => 20130402062345) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "comments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "theme_id"
-    t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "entries", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "theme_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "genders", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false

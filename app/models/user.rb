@@ -22,4 +22,10 @@ class User < ActiveRecord::Base
     hosted_themes = self.themes
     commented_themes - hosted_themes
   end
+
+  def hosted_talks
+    hosted_all = Talk.hosted_by(self)
+    message_sended = hosted_all.message_sended_by(self)
+    return message_sended.to_a + (hosted_all.to_a - message_sended.to_a)
+  end
 end

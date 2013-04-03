@@ -7,9 +7,9 @@ module Private
       page = params[:page] ? params[:page].to_i : 1
 
       if @search == 'hosted'
-        talks = []
+        talks = current_user.hosted_talks
       else
-        talks = Talk.where(user_id: current_user.id).to_a
+        talks = Talk.entried_by(current_user)
       end
       @talks = Kaminari.paginate_array(talks).page(page).per(Talk::PER_PAGE)
       if page == 1
