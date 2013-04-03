@@ -1,4 +1,5 @@
 class Talk < ActiveRecord::Base
+  PER_PAGE = 10
   attr_accessible :user_id, :theme_id, :chats_attributes
   belongs_to :user
   belongs_to :theme

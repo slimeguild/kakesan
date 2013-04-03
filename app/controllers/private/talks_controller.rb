@@ -1,21 +1,21 @@
 # coding: utf-8
 module Private
-  class ThemesController < ApplicationController  
+  class TalksController < ApplicationController  
     before_filter :login_authenticate  
     def index
       @search = params[:search] || 'hosted'
       page = params[:page] ? params[:page].to_i : 1
 
       if @search == 'hosted'
-        themes = current_user.themes.newly.to_a
+        talks = []
       else
-        themes = current_user.entried_themes
+        talks = Talk.where(user_id: current_user.id).to_a
       end
-      @themes = Kaminari.paginate_array(themes).page(page).per(Theme::PER_PAGE)
+      @talks = Kaminari.paginate_array(talks).page(page).per(Talk::PER_PAGE)
       if page == 1
-        @next = Kaminari.paginate_array(themes).page(page + 1).per(Theme::PER_PAGE).count > 0
+        @next = Kaminari.paginate_array(talks).page(page + 1).per(Talk::PER_PAGE).count > 0
       else
-        render 'themes/_list', layout: false, locals: { themes: @themes}
+        render 'talks/_list', layout: false, locals: { talks: @talks}
       end
     end
   end

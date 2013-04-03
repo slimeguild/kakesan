@@ -12,6 +12,10 @@ gem 'kaminari'
 group :development, :test do
   gem 'sqlite3'
   gem 'i18n_generators'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'spork'
+  gem 'simplecov', :require => false
 end
 
 group :production do

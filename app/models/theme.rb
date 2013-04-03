@@ -14,19 +14,10 @@ class Theme < ActiveRecord::Base
 
   scope :newly, order('created_at desc')
   validates :title, presence: true, length: {maximum: TITLE_MAX_LENGTH}
-  #validates :where, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
-  #validates :who, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
-  #validates :what, presence: true, length: {maximum: KAKESAN_MAX_LENGTH}
   validates :description, length: {maximum: DESCRIPTION_MAX_LENGTH}
 
   def custom_title
     self.title + 'が好き'
-  end
-
-  def participants
-    participants = [self.user]
-    participants += User.find(self.comments.map(&:user_id).uniq)
-    participants.uniq
   end
 
   def build_requirements
