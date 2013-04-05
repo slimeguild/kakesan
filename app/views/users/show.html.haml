@@ -1,8 +1,27 @@
 #user-page
   #wrapper
-    .clearfix
-      .photo.left{style: "background: url(#{@user.image}) no-repeat center; background-size: cover;"}
-      .name.left
-        =@user.nickname
-    .description
-      = simple_format @user.description
+    .column
+      .label= t('activerecord.attributes.user.image')
+      .field
+        = image_tag @user.twitter_image
+    .column
+      .label=t ('activerecord.attributes.user.nickname')
+      .field
+        = @user.nickname
+    .column
+      .label=t ('activerecord.attributes.user.gender_id')
+      .field
+        = @user.gender.name
+    .column
+      .label=t ('activerecord.attributes.user.age_id')
+      .field
+        = @user.age.name
+    .column
+      .label=t ('activerecord.attributes.user.area')
+      .field
+        = @user.area
+    .column
+      .label=t ('activerecord.attributes.user.description')
+      .field
+        = simple_format @user.description
+

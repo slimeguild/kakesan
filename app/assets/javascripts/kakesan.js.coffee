@@ -7,7 +7,7 @@ window.kakesan = kakesan
 kakesan.ajax_loader = (next, path, options) ->
   show_loader = ->
     loader = $("<div id='loader' style='text-align: center; padding: 5px;'><img src= '/assets/ajax-loader.gif' /></div>")
-    $("#event-list").append(loader)
+    $("#theme-list").append(loader)
   
   hide_loader = ->
     $('#loader').remove()
@@ -35,6 +35,13 @@ kakesan.ajax_loader = (next, path, options) ->
         obj.data('loading', false)
       )
   )
+
+kakesan.chat_button = ->
+  $("#chat_message").bind "keydown keyup keypress change", ->
+      if $(this).val().length > 0
+        $('#chat_button').removeAttr("disabled");
+      else
+        $('#chat_button').attr("disabled","disabled")
 
 
 ##########################################

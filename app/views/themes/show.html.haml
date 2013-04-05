@@ -1,0 +1,13 @@
+- content_for :foot do
+  :coffeescript
+    $ -> kakesan.chat_button()
+.talk-page
+  #wrapper      
+    = render 'themes/show', theme: @theme
+    - if @talk
+      = render 'talks/form'
+    - else
+      .button.disabled
+        あなたが主催者です      
+
+

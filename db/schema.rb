@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228111612) do
+ActiveRecord::Schema.define(:version => 20130402062345) do
 
   create_table "ages", :force => true do |t|
     t.string   "name"
@@ -19,36 +19,40 @@ ActiveRecord::Schema.define(:version => 20130228111612) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "comments", :force => true do |t|
+  create_table "chats", :force => true do |t|
+    t.integer  "talk_id"
     t.integer  "user_id"
-    t.integer  "event_id"
-    t.text     "body"
+    t.text     "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "entries", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "events", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "where"
-    t.string   "who"
-    t.string   "what"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "title"
   end
 
   create_table "genders", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "requirements", :force => true do |t|
+    t.integer  "theme_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "talks", :force => true do |t|
+    t.integer  "theme_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "themes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "twitters", :force => true do |t|

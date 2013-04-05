@@ -1,0 +1,18 @@
+.theme
+  .kakesan.clearfix
+    - requirements = theme.requirements
+    - requirements.each_with_index do |r,i|
+      .box
+        %span= r.title
+      - unless (i+1) == requirements.count
+        .kake
+          %span ×
+  .info.clearfix
+    .photo.left{style: "background: url(#{theme.user.twitter_image}) no-repeat center; background-size: cover;"}
+    = link_to load_ksapi(user_path(theme.user), theme.user.nickname) do
+      .name.left
+        %span= theme.user.nickname
+      .time.right
+        %span= twitter_like_time(theme.created_at)
+  .description.bottom
+    = simple_format theme.description

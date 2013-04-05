@@ -1,0 +1,23 @@
+- theme = talk.theme
+%li.theme
+  = link_to load_ksapi(talk_path(talk), theme.custom_title) do
+    .title
+      %span= theme.custom_title
+    .kakesan.clearfix
+      - requirements = theme.requirements
+      - requirements.each_with_index do |r,i|
+        .box
+          %span= r.title
+        - unless (i+1) == requirements.count
+          .kake
+            %span ×
+    .description.no-wrap
+      %span= theme.description
+  .info.clearfix
+    - user = hosted ? talk.user : theme.user
+    = link_to load_ksapi(user_path(user), user.nickname) do
+      .photo.left{style: "background: url(#{user.twitter_image}) no-repeat center; background-size: cover;"}
+      .name.left
+        %span= user.nickname
+    .time.right
+      %span= twitter_like_time(theme.created_at)

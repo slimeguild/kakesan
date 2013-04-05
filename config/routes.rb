@@ -3,12 +3,12 @@ Kakesan::Application.routes.draw do
   resources :sessions, only: [:new] do
     get :check, on: :collection
   end
-  resources :events, only: [:new, :create, :index, :show]
-  resources :entries, only: [:create]
-  resources :comments, only: [:create]
+  resources :themes, only: [:new, :create, :index, :show]
+  resources :talks, only: [:create, :show]
+  resources :chats, only: [:create]
   resources :users, only: [:new, :create, :show, :edit, :update]
   namespace :private do
-    resources :events, only: [:index]
+    resources :talks, only: [:index]
   end
   match '/auth/:provider/callback', to: 'authentifications#callback'
   match '/auth/failure'           , to: 'authentifications#failure'

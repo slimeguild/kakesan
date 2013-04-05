@@ -1,0 +1,8 @@
+- content_for :foot do
+  :coffeescript
+    $ -> kakesan.chat_button()
+.talk-page
+  #wrapper
+    = render 'themes/show', theme: @talk.theme
+    = render 'chats/form'
+    = render 'chats/list'

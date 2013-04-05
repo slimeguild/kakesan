@@ -1,0 +1,30 @@
+- content_for :foot do
+  :coffeescript
+    $ ->
+      kakesan.loadAPI('#{button_ksapi('kakesan.closeButtonDidPushed', '閉じる', 'right')}')
+#wrapper
+  = render 'layouts/flash', object: @theme
+  = form_for @theme do |f|
+    = f.hidden_field :user_id
+    .column
+      .label
+        %span= f.label :title
+        %span.caution= "※必須。 #{Theme::TITLE_MAX_LENGTH}文字以内"
+      .field.clearfix
+        .left= f.text_field :title, maxlength: Theme::TITLE_MAX_LENGTH, class: 'title'
+        .left.title-tail 
+          %span が好き
+
+    .column
+      .label
+        %span= Requirement.model_name.human
+        %span.caution= "※必須。 #{Requirement::TITLE_MAX_LENGTH}文字以内"
+      = f.fields_for :requirements do |r|
+        .field
+          = r.text_field :title
+    .column
+      .label
+        %span= f.label :description
+      .field= f.text_area :description, maxlength: Theme::DESCRIPTION_MAX_LENGTH
+    .submit
+      = f.submit 'テーマを作る', class: 'button'
