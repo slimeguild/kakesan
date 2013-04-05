@@ -15,7 +15,7 @@ module Private
       if page == 1
         @next = Kaminari.paginate_array(talks).page(page + 1).per(Talk::PER_PAGE).count > 0
       else
-        render 'talks/_list', layout: false, locals: { talks: @talks}
+        render 'talks/_list', layout: false, locals: {talks: @talks, hosted: @search == 'hosted'}
       end
     end
   end

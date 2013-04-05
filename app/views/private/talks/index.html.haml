@@ -16,4 +16,4 @@
       参加している
 %ul#theme-list
   #contents
-    = render 'talks/list', talks: @talks
+    = render 'talks/list', talks: @talks, hosted: @search == 'hosted'

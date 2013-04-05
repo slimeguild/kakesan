@@ -33,7 +33,7 @@
   .column
     .label
       %span= f.label :description
-      %span.caution= "#{User::TEXT_MAX_LENGTH}文字以内。"
+      %span.caution= "※#{User::TEXT_MAX_LENGTH}文字以内。"
     .field=f.text_area :description, maxlength: User::TEXT_MAX_LENGTH
   .submit
     = f.submit f.object.new_record? ? '登録' : '変更', class: 'button'

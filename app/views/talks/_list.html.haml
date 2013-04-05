@@ -1,1 +1,2 @@
-= @talks.count
+- @talks.each do |talk|
+  = render 'talks/item', talk: talk, hosted: hosted
