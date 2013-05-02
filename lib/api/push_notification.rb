@@ -19,7 +19,7 @@ module API
     def chat_received(chat)
       notification = Grocer::Notification.new(
         device_token: @user.iOS.token, 
-        alert: "#{chat.user.nickname}さんから#{chat.talk.theme.title}についてメッセージが届きました。",
+        alert: "#{chat.user.nickname}さんから「#{chat.talk.theme.title}が好き」についてメッセージが届きました。",
         badge: 1,
         sound: '',
         expiry: Time.now + 60*60
