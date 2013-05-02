@@ -6,8 +6,5 @@ class CreateDevices < ActiveRecord::Migration
       t.string :type
       t.timestamps
     end
-    User.all.each do |u|
-      ::IOS.create!({user_id: u.id})
-    end
   end
 end
