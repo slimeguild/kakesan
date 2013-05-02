@@ -25,6 +25,8 @@ module API
         expiry: Time.now + 60*60
       )
       @pusher.push(notification)
+      Rails.logger.info '--- chat received ---'
+      Rails.logger.info notification
     end
   end
 end
