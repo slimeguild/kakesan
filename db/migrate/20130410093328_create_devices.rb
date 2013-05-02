@@ -7,7 +7,7 @@ class CreateDevices < ActiveRecord::Migration
       t.timestamps
     end
     User.all.each do |u|
-      IOS.create!({user_id: u.id})
+      ::IOS.create!({user_id: u.id})
     end
   end
 end
