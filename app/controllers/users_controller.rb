@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.build_iOS
     if @user.save
       self.current_user = @user
       session.delete :user

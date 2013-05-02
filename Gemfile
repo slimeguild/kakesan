@@ -8,6 +8,7 @@ gem 'coffee-filter'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'kaminari'
+gem 'grocer'
 
 group :development, :test do
   gem 'sqlite3'

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :nickname, :twitter_image, :description, :gender_id, :age_id, :area, :twitter_attributes
   has_one  :twitter, dependent: :destroy
+  has_one  :iOS, dependent: :destroy
   has_many :themes , dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -27,5 +28,9 @@ class User < ActiveRecord::Base
     hosted_all = Talk.hosted_by(self)
     message_sended = hosted_all.message_sended_by(self)
     return message_sended.to_a + (hosted_all.to_a - message_sended.to_a)
+  end
+
+  def notificatable?
+    self.iOS.token.present?
   end
 end

@@ -6,6 +6,7 @@ Kakesan::Application.routes.draw do
   resources :themes, only: [:new, :create, :index, :show]
   resources :talks, only: [:create, :show]
   resources :chats, only: [:create]
+  resources :ios, only: [:create, :index]
   resources :users, only: [:new, :create, :show, :edit, :update]
   namespace :private do
     resources :talks, only: [:index]
