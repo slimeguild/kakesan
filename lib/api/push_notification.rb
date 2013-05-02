@@ -18,7 +18,7 @@ module API
 
     def chat_received(chat)
       notification = Grocer::Notification.new(
-        device_token: @user.ios_device.token, 
+        device_token: @user.iOS.token, 
         alert: "#{chat.user.name}さんから#{chat.talk.theme.title}についてメッセージが届きました。",
         badge: 1,
         sound: '',
